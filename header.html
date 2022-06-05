@@ -1,0 +1,23 @@
+<div class="blog-grid-container">
+  <div class="latest">
+  {% assign latest_post = site.posts[0] %}
+    <a href="{{site.baseurl}}{{latest_post.url}}">
+    <div class="topfirstimage" style="background-image: url({% if latest_post.image contains "://" %}{{ latest_post.image }}{% else %} {{site.baseurl}}/{{ latest_post.image}}{% endif %}); height: 200px;    background-size: cover;    background-repeat: no-repeat;"></div>     
+    </a>
+    <a class="text" href="{{site.baseurl}}{{latest_post.url}}">{{ latest_post.title }}</a>
+  </div>
+  <div class="second">
+  {% assign second_post = site.posts[1] %}
+    <a href="{{site.baseurl}}{{second_post.url}}">
+    <div class="topfirstimage" style="background-image: url({% if second_post.image contains "://" %}{{ second_post.image }}{% else %} {{site.baseurl}}/{{ second_post.image}}{% endif %}); height: 200px;    background-size: cover;    background-repeat: no-repeat;"></div>     
+    </a>
+    <a class="text" href="{{site.baseurl}}{{second_post.url}}">{{ second_post.title }}</a>
+  </div>
+  <div class="third">
+  {% assign third_post = site.posts[2] %}
+        <a href="{{site.baseurl}}{{third_post.url}}">
+    <div class="topfirstimage" style="background-image: url({% if thirdthird_post.image contains "://" %}{{ third_post.image }}{% else %} {{site.baseurl}}/{{ third_post.image}}{% endif %}); height: 200px;    background-size: cover;    background-repeat: no-repeat;"></div>     
+    </a>
+    <a class="text" href="{{site.baseurl}}{{third_post.url}}">{{ third_post.title }}</a>
+  </div>
+</div>
