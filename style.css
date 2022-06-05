@@ -1,0 +1,20 @@
+.blog-grid-container {  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 10px 10px;
+  grid-auto-flow: row;
+  justify-items: center;
+  align-items: center;
+  grid-template-areas:
+    "latest second"
+    "latest third";
+}
+
+.latest {
+  grid-area: latest;
+  width: 400px;
+}
+
+.second { grid-area: second; }
+
+.third { grid-area: third; }
