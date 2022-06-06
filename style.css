@@ -1,4 +1,5 @@
-.hero-container {  display: grid;
+.hero-container {
+  display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr;
   gap: 0px 5px;
@@ -179,5 +180,13 @@ a.hero-categories {
   }
 
 @media (max-width: 768px) {
+.hero-author {
+  display: none;
+}
+}
 
+@media (max-width: 500px) {
+  span.header_title.second, span.header_title.thirdfour {
+    font-size: 8px;
+  }
 }
