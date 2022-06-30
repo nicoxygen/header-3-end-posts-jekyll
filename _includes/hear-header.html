@@ -5,14 +5,21 @@
         <div class="hero-image" style="background-image: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0) 60%),url({% if latest_post.image contains "://" %}/assets/images/posts/{{ latest_post.guid }}/{{ latest_post.image }}{% else %} {{ site.baseurl }}/assets/images/posts/{{ latest_post.guid }}/{{ latest_post.image }}{% endif %}); height: 385px; width:100%;    background-size: cover;    background-repeat: no-repeat;"></div>
       </a>
       <div class="hero-text latest">
-      {% unless latest_post.categories == empty %}
+      {% if latest_post.categories != empty %}
       {% assign sortedCategories = latest_post.categories | sort %}
       {% for category in sortedCategories limit:2 %}
-      <a class="hero-categories" href="{{site.baseurl}}/categories#{{ category | replace: " ","-" }}">{{ category }}</a>
+      <a class="hero-categories" href="{{site.baseurl}}/categories#{{ category | slugify | replace: " ","-" }}">{{ category }}</a>
+      {% endfor %}
+      {% else %}
+      {% unless latest_post.tags == empty %}
+      {% assign sortedTags = latest_post.tags | sort %}
+      {% for tag in sortedTags limit:2 %}
+      <a class="hero-tags" href="{{site.baseurl}}/tags#{{ tag | slugify | replace: " ","-" }}">{{ tag }}</a>
       {% endfor %}
       {% endunless %}
+      {% endif %}
       <br />
-      <span class="header_title latest" href="{{site.baseurl}}{{latest_post.url}}">{{ latest_post.title | truncate: 100 }}</span>
+      <a href="{{site.baseurl}}{{latest_post.url}}"><span class="header_title latest">{{ latest_post.title | truncate: 100 }}</span></a>
       {% if latest_post.author %}
       <span class="hero-author">
         <span class="hero-post-author font-weight-bold">{{ latest_post.author }}</span>
@@ -25,17 +32,24 @@
     <div class="second">
       {% assign second_post = site.posts[1] %}
         <a href="{{site.baseurl}}{{second_post.url}}">
-          <div class="hero-image" style="background-image: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0) 60%),url({% if second_post.image contains "://" %}/assets/images/posts/{{ second_post.guid }}/{{ second_post.image }}{% else %} {{ site.baseurl }}/assets/images/posts/{{ second_post.guid }}/{{ second_post.image }}{% endif %});"></div>
+          <div class="hero-image" style="background-image: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0) 60%),url({% if second_post.image contains "://" %}/assets/images/posts/{{ second_post.guid }}/{{ second_post.image }}{% else %} {{ site.baseurl }}/assets/images/posts/{{ second_post.guid }}/{{ second_post.image }}{% endif %}); height: 240px; width:100%;    background-size: cover;    background-repeat: no-repeat;"></div>
         </a>
         <div class="hero-text second">
-          {% unless second_post.categories == empty %}
+          {% if second_post.categories != empty %}
           {% assign sortedCategories = second_post.categories | sort %}
           {% for category in sortedCategories limit:1 %}
           <a class="hero-categories" href="{{site.baseurl}}/categories#{{ category | replace: " ","-" }}">{{ category }}</a>
           {% endfor %}
+          {% else %}
+          {% unless second_post.tags == empty %}
+          {% assign sortedTags = second_post.tags | sort %}
+          {% for tag in sortedTags limit:1 %}
+          <a class="hero-tags" href="{{site.baseurl}}/tags#{{ tag | slugify | replace: " ","-" }}">{{ tag }}</a>
+          {% endfor %}
           {% endunless %}
+          {% endif %}
           <br />
-        <span class="header_title second" href="{{site.baseurl}}{{second_post.url}}">{{ second_post.title | truncate: 60 }}</span>
+        <a href="{{site.baseurl}}{{second_post.url}}"><span class="header_title second">{{ second_post.title | truncate: 60 }}</span></a>
         {% if second_post.author %}
         <span class="hero-author">
           <span class="hero-post-author font-weight-bold">{{ second_post.author }}</span>
@@ -51,14 +65,21 @@
                 <div class="hero-image" style="background-image: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0) 60%),url({% if third_post.image contains "://" %}/assets/images/posts/{{ third_post.guid }}/{{ third_post.image }}{% else %} {{ site.baseurl }}/assets/images/posts/{{ third_post.guid }}/{{ third_post.image }}{% endif %}); height: 140px; width:100%;    background-size: cover;    background-repeat: no-repeat;"></div>
           </a>
           <div class="hero-text thirdfour">
-            {% unless third_post.categories == empty %}
+            {% if third_post.categories != empty %}
             {% assign sortedCategories = third_post.categories | sort %}
             {% for category in sortedCategories limit:1 %}
             <a class="hero-categories" href="{{site.baseurl}}/categories#{{ category | replace: " ","-" }}">{{ category }}</a>
             {% endfor %}
+            {% else %}
+            {% unless third_post.tags == empty %}
+            {% assign sortedTags = third_post.tags | sort %}
+            {% for tag in sortedTags limit:1 %}
+            <a class="hero-tags" href="{{site.baseurl}}/tags#{{ tag | slugify | replace: " ","-" }}">{{ tag }}</a>
+            {% endfor %}
             {% endunless %}
+            {% endif %}
             <br />
-          <span class="header_title thirdfour" href="{{site.baseurl}}{{third_post.url}}">{{ third_post.title | truncate: 60 }}</span>
+        <a href="{{site.baseurl}}{{third_post.url}}"><span class="header_title thirdfour">{{ third_post.title | truncate: 60 }}</span></a>
           {% if third_post.author %}
           <span class="hero-author">
             <span class="hero-post-author font-weight-bold">{{ third_post.author }}</span>
@@ -73,17 +94,21 @@
                 <div class="hero-image" style="background-image: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0) 60%),url({% if four_post.image contains "://" %}/assets/images/posts/{{ four_post.guid }}/{{ four_post.image }}{% else %} {{ site.baseurl }}/assets/images/posts/{{ four_post.guid }}/{{ four_post.image }}{% endif %}); height: 140px; width:100%;    background-size: cover;    background-repeat: no-repeat;"></div>
           </a>
           <div class="hero-text thirdfour">
-            {% if four_post.tags != empty %}
-            <a class="tags">{{ four_post.tags }}</a>
-            {% endif %}
-            {% unless four_post.categories == empty %}
+            {% if four_post.categories != empty %}
             {% assign sortedCategories = four_post.categories | sort %}
             {% for category in sortedCategories limit:1 %}
             <a class="hero-categories" href="{{site.baseurl}}/categories#{{ category | replace: " ","-" }}">{{ category }}</a>
             {% endfor %}
+            {% else %}
+            {% unless four_post.tags == empty %}
+            {% assign sortedTags = four_post.tags | sort %}
+            {% for tag in sortedTags limit:1 %}
+            <a class="hero-tags" href="{{site.baseurl}}/tags#{{ tag | slugify | replace: " ","-" }}">{{ tag }}</a>
+            {% endfor %}
             {% endunless %}
+            {% endif %}
             <br />
-          <span class="header_title thirdfour" href="{{site.baseurl}}{{four_post.url}}">{{ four_post.title | truncate: 60 }}</span>
+          <a href="{{site.baseurl}}{{four_post.url}}"><span class="header_title thirdfour">{{ four_post.title | truncate: 60 }}</span></a>
           {% if four_post.author %}
           <span class="hero-author">
             <span class="hero-post-author font-weight-bold">{{ four_post.author }}</span>
